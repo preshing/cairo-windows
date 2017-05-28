@@ -1,5 +1,7 @@
 This repository is meant to help create Cairo DLLs for Windows. Both 32-bit and 64-bit versions can be built. The resulting `cairo.dll` file is fully self-contained and does not depend on any other third-party DLLs. FreeType support is included.
 
+Binary releases are available [here](https://github.com/preshing/cairo-windows/releases).
+
 # Build Steps
 
 The `build-cairo-windows.sh` shell script will download, extract, and build all the necessary libraries to link a self-contained `cairo.dll` with FreeType support. It uses the existing build pipelines of each library as much as possible. It was adapted from https://www.cairographics.org/end_to_end_build_for_win32/
