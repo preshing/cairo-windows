@@ -5,9 +5,9 @@ trap 'echo FAILED COMMAND: $previous_command' EXIT
 
 # Versions used
 USE_FREETYPE=1
-CAIRO_VERSION=cairo-1.15.4
+CAIRO_VERSION=cairo-1.15.6
 PIXMAN_VERSION=pixman-0.34.0
-LIBPNG_VERSION=libpng-1.6.29
+LIBPNG_VERSION=libpng-1.6.31
 ZLIB_VERSION=zlib-1.2.11
 FREETYPE_VERSION=freetype-2.8
 

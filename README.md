@@ -27,7 +27,7 @@ When it's done, you'll find a self-contained package in a subdirectory named `ou
 
 1. First build 32-bit.
 2. Open `libpng\projects\vstudio\vstudio.sln` in Visual Studio, then add the "x64" platform to the solution as follows:
-   * Debug &rarr; Configuration Manager
+   * Build &rarr; Configuration Manager
    * Active solution platform: &rarr; <New...>
    * Select x64, click OK, close the Configuration Manager
    * File &rarr; Save All
