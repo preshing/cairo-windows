@@ -5,11 +5,11 @@ trap 'echo FAILED COMMAND: $previous_command' EXIT
 
 # Versions used
 USE_FREETYPE=1
-CAIRO_VERSION=cairo-1.15.6
+CAIRO_VERSION=cairo-1.15.10
 PIXMAN_VERSION=pixman-0.34.0
-LIBPNG_VERSION=libpng-1.6.31
+LIBPNG_VERSION=libpng-1.6.34
 ZLIB_VERSION=zlib-1.2.11
-FREETYPE_VERSION=freetype-2.8
+FREETYPE_VERSION=freetype-2.8.1
 
 # Set variables according to command line argument
 if [ ${1:-x86} = x64 ]; then
