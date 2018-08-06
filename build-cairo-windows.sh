@@ -5,11 +5,11 @@ trap 'echo FAILED COMMAND: $previous_command' EXIT
 
 # Versions used
 USE_FREETYPE=1
-CAIRO_VERSION=cairo-1.15.10
+CAIRO_VERSION=cairo-1.15.12
 PIXMAN_VERSION=pixman-0.34.0
-LIBPNG_VERSION=libpng-1.6.34
+LIBPNG_VERSION=libpng-1.6.35
 ZLIB_VERSION=zlib-1.2.11
-FREETYPE_VERSION=freetype-2.8.1
+FREETYPE_VERSION=freetype-2.9.1
 
 # Set variables according to command line argument
 if [ ${1:-x86} = x64 ]; then
@@ -27,7 +27,7 @@ export PATH="$MSVC_LINK_PATH:$PATH"
 # Download packages if not already
 wget -nc https://www.cairographics.org/snapshots/$CAIRO_VERSION.tar.xz
 wget -nc https://www.cairographics.org/releases/$PIXMAN_VERSION.tar.gz
-wget -nc ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng16/$LIBPNG_VERSION.tar.gz
+wget -nc https://download.sourceforge.net/libpng/$LIBPNG_VERSION.tar.gz
 wget -nc http://www.zlib.net/$ZLIB_VERSION.tar.gz
 if [ $USE_FREETYPE -ne 0 ]; then
     wget -nc http://download.savannah.gnu.org/releases/freetype/$FREETYPE_VERSION.tar.gz
@@ -97,8 +97,8 @@ if [ $USE_FREETYPE -ne 0 ]; then
         # Upgrade solution if not already
         devenv.com "builds/windows/vc2010/freetype.sln" -upgrade
     fi
-    devenv.com "builds/windows/vc2010/freetype.sln" -build "Release Multithreaded|$MSVC_PLATFORM_NAME"
-    cp `ls -1d objs/vc2010/$MSVC_PLATFORM_NAME/freetype*MT.lib` freetype.lib
+    devenv.com "builds/windows/vc2010/freetype.sln" -build "Release Static|$MSVC_PLATFORM_NAME"
+    cp "`ls -1d "objs/$MSVC_PLATFORM_NAME/Release Static/freetype.lib"`" .
     cd ..
 fi
 
