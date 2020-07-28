@@ -12,14 +12,23 @@ The Visual Studio 2017 compiler is used. Either MSYS, MSYS2 or Cygwin must be us
 
 ## Building 32-bit
 
-From the start menu, open "x86 Native Tools Command Prompt for VS 2017". Add the MSYS2 (for example) toolchain to the path. Start an MSYS2 shell (which inherits the `INCLUDE`, `LIB` and `PATH` variables from the first prompt), then run the script.
+You'll need to create an MSYS2 (for example) shell that has all the correct environment variables set for Visual Studio 2017, including `INCLUDE`, `LIB` and `PATH`.
+
+As of this writing, this can be achieved by opening "x86 Native Tools Command Prompt for VS 2017" from the start menu, and entering commands similar to the following. The final command runs the `build-cairo-windows.sh` script.
 
 ```
 (from an x86 Native Tools Command Prompt for VS 2017)
-> set PATH=C:\msys32\usr\bin;%PATH%
-> sh
+> set PATH=C:\msys64;%PATH%
+> msys2_shell.cmd -use-full-path
+$ unset TMP
+$ unset TEMP
 $ ./build-cairo-windows.sh
 ```
+
+Some notes:
+
+* `msys2_shell.cmd -use-full-path` opens an MSYS2 terminal while [inheriting the PATH](https://sourceforge.net/p/msys2/discussion/general/thread/dbe17030/#3f85) from the x86 Native Tools Command Prompt.
+* `unset TMP` and `unset TEMP` are currently needed to avoid `error MSB6001: Invalid command line switch for "CL.exe". Item has already been added. Key in dictionary: 'TMP' Key being added: 'tmp'`, which is caused by the MSYS2 environment block [having multiple `TMP` entries due to case sensitivty](https://cmake.org/Bug/print_bug_page.php?bug_id=13131).
 
 When it's done, you'll find a self-contained package in a subdirectory named `output/cairo-windows-x.x.x`.
 
@@ -35,7 +44,9 @@ When it's done, you'll find a self-contained package in a subdirectory named `ou
 
 ```
 (from an x64 Native Tools Command Prompt for VS 2017)
-> set PATH=C:\msys32\usr\bin;%PATH%
-> sh
+> set PATH=C:\msys64;%PATH%
+> msys2_shell.cmd -use-full-path
+$ unset TMP
+$ unset TEMP
 $ ./build-cairo-windows.sh x64
 ```

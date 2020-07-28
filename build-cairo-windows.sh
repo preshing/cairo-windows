@@ -5,11 +5,11 @@ trap 'echo FAILED COMMAND: $previous_command' EXIT
 
 # Versions used
 USE_FREETYPE=1
-CAIRO_VERSION=cairo-1.15.12
-PIXMAN_VERSION=pixman-0.34.0
-LIBPNG_VERSION=libpng-1.6.35
+CAIRO_VERSION=cairo-1.17.2
+PIXMAN_VERSION=pixman-0.40.0
+LIBPNG_VERSION=libpng-1.6.37
 ZLIB_VERSION=zlib-1.2.11
-FREETYPE_VERSION=freetype-2.9.1
+FREETYPE_VERSION=freetype-2.10.2
 
 # Set variables according to command line argument
 if [ ${1:-x86} = x64 ]; then
@@ -62,7 +62,7 @@ fi
 
 # Build libpng and zlib
 cd libpng
-sed s/zlib-1.2.8/zlib/ projects/vstudio/zlib.props > zlib.props.fixed
+sed 's#4996</Disable#4996;5045</Disable#' projects/vstudio/zlib.props > zlib.props.fixed
 mv zlib.props.fixed projects/vstudio/zlib.props
 if [ ! -d "projects\vstudio\Backup" ]; then
     # Upgrade solution if not already
