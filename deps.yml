@@ -1,0 +1,26 @@
+version: 3
+dependencies:
+- type: git
+  settings:
+    remotes:
+      git://anongit.freedesktop.org/git/cairo:
+         replace_in_files:
+         - filename: build-cairo-windows.sh
+           pattern: CAIRO_VERSION=cairo-(\S+)
+      https://github.com/freedesktop/pixman.git:
+        replace_in_files:
+        - filename: build-cairo-windows.sh
+          pattern: PIXMAN_VERSION=pixman-(\S+)
+          tag_prefix: pixman-
+      https://github.com/glennrp/libpng.git:
+        replace_in_files:
+        - filename: build-cairo-windows.sh
+          pattern: LIBPNG_VERSION=libpng-(\S+)
+          tag_prefix: v
+      git://git.sv.nongnu.org/freetype/freetype2.git:
+        replace_in_files:
+        - filename: build-cairo-windows.sh
+          pattern: FREETYPE_VERSION=freetype-(\S+)
+          tag_filter:
+            matching: 'VER-(\d+)-(\d+)-(\d+)'
+            output_as: '$1.$2.$3'  # output and sort as a semver-compatible 
