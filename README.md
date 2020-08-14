@@ -39,3 +39,20 @@ When it's done, you'll find a self-contained package in a subdirectory named `ou
 > sh
 $ ./build-cairo-windows.sh x64
 ```
+
+# Updating dependencies
+
+The repo contains a deps.yml which can update cairo, freetype etc using dependencies.io
+
+
+To run this locally, install the commandline tool from https://deps.app/local/
+
+```
+$ curl https://deps.app/install.sh | bash -s -- -b $HOME/bin
+```
+
+Then run it, accepting all the prompts:
+```
+$ yes | deps run
+```
+
