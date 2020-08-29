@@ -112,7 +112,7 @@ else
     sed '/^CAIRO_LIBS =/s/ $(top_builddir)\/..\/freetype\/freetype.lib//;/^DEFAULT_CFLAGS =/s/ -I$(top_srcdir)\/..\/freetype\/include//' build/Makefile.win32.common > Makefile.win32.common.fixed
 fi
 mv Makefile.win32.common.fixed build/Makefile.win32.common
-sed "s/CAIRO_HAS_FT_FONT=./CAIRO_HAS_FT_FONT=$USE_FREETYPE/" build/Makefile.win32.features > Makefile.win32.features.fixed
+sed "s/CAIRO_HAS_FT_FONT=./CAIRO_HAS_FT_FONT=$USE_FREETYPE/;s/CAIRO_HAS_TEE_SURFACE=./CAIRO_HAS_TEE_SURFACE=1/" build/Makefile.win32.features > Makefile.win32.features.fixed
 mv Makefile.win32.features.fixed build/Makefile.win32.features
 # pass -B for switching between x86/x64
 make -B -f Makefile.win32 cairo "CFG=release"
@@ -129,7 +129,8 @@ for file in cairo/cairo-version.h \
             cairo/src/cairo-script.h \
             cairo/src/cairo-ps.h \
             cairo/src/cairo-pdf.h \
-            cairo/src/cairo-svg.h; do
+            cairo/src/cairo-svg.h \
+            cairo/src/cairo-tee.h; do
     cp $file $OUTPUT_FOLDER/include
 done
 if [ $USE_FREETYPE -ne 0 ]; then
